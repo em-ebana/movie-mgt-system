@@ -8,9 +8,9 @@ const router = express.Router();
 const app = express();
 const pool = new Pool({
     host: 'localhost',
-   user: 'postgres',
+   user: '******',
    database: 'VMSystem',
-   password: 'password',
+   password: '*******',
    max: 20,
    idleTimeoutMillis: 30000,
    connectionTimeoutMillis: 2000,
