@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- <link rel="stylesheet" href="./css/style.css"> -->
+    <style>
+        body {
+          width: 800px;
+          margin: 10px auto;
+        }
+    </style>
+    <title>Recommendation</title>
+</head>
+<body>
+    <div class="w3-container">
+        <h1>List of Recommended Movies</h1>
+                  <div class="w3-card-4 card-space" style="min-height: 15em;line-height: 1.5; "> 
+                    <p class="w3-padding-large" id="rec-msg"><%= recs %></p>
+                  </div>
+                  <div class="w3-card-4 card-space"> 
+                    <table class="w3-table-all w3-card-4">          
+                        <tr>
+                          <th>Movie ID:</th>
+                          <th>Title</th>
+                          <th>Number of Persons: </th>
+                          <th>Total Rating:</th>
+                          <th>Average Rating:</th>
+                          <th>Rating Info:</th>
+                        </tr>
+                        <%  result_recs.rows.forEach(rec =>{ %> 
+                        <tr>
+                          <td><%=rec.movie_id%></td>
+                          <td><%=rec.title%></td>
+                          <td><%=rec.ratings_by%></td>
+                          <td><%=rec.total_rating%></td>
+                          <td><%=rec.avg_rating%></td>
+                          <td><%=rec.rating_comments%></td>
+                        
+                        </tr>
+                        <%});%> 
+                        <!-- <tr>
+                          <td>MOV23</td>
+                          <td>Just another movie 2</td>
+                          <td>Dem Dem</td>
+                          <td>5</td>
+                          <td>4.2</td>
+                          <td>Not a great movie at all</td>
+                        
+                        </tr> -->
+                        <!-- <tr>
+                          <td>MOV29</td>
+                          <td>Just another movie 3</td>
+                          <td>Richy Eich</td>
+                          <td>12</td>
+                          <td>7.3</td>
+                          <td>I love the movie so well</td>
+                        
+                        </tr> -->
+                    </table>
+                  </div>
+    </div>
+</body>
+</html>

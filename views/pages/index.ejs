@@ -1,0 +1,953 @@
+<!-- Heading goes here SECTION/PAGE STARTS HERE -->        
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- <link rel="stylesheet" href="./css/style.css"> -->
+    <title> <%= pageTitle %></title>
+
+    <style>
+      
+      body{
+        background-image: url('./images/shapes-ppt.jpg');
+        background-position: center;
+    }
+    h1{
+        margin-top: 20px;
+    }
+    *{
+        box-sizing: border-box;
+    }
+    .heading-top{
+        text-align: center;
+        margin-bottom: 0;
+        text-transform:uppercase;
+        font-weight: 800;
+        font-size: 2em;
+    }
+    
+    .container{
+     
+     
+        width: 70%;
+        margin: 0 auto;
+    }
+    .index-user{
+        width: 60%;
+        margin: auto;
+        
+    }
+    .btn{
+        width: 100%;
+        padding: 1em 0;
+        margin-bottom: 2rem;
+        font-size: 1.5rem;
+        border-radius: 40px;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+    .space-div{
+        padding-top: 6rem;
+    }
+    .w3-bar2{
+        display: flex;
+        column-gap: 30px;
+        align-items: center;
+    }
+    .tablink{      
+        font-size: 1.3rem;
+       font-weight: 700;
+       text-align: center;
+    }
+    .mov-preference{
+       display: flex;
+       
+    }
+    .mov-preference p{
+    width: calc(100% - 10px);
+    } 
+    
+    .user-category{
+        display: flex;
+        width: calc(100% - 10px);
+    }
+    .m-button{
+        margin-top: 45px;
+                
+    } 
+    .m-button input{
+        
+        margin-left: 20px;
+        padding: 0.5em 1em;
+    }   
+    .card-space{
+        margin-top: 20px;
+    }
+        
+    </style>
+
+    
+</head>
+<body>
+<!-- heading ends here SECTION/PAGE ENDS HERE -->
+
+<div class="container">
+  <div class="space-div"></div>
+        
+  <h2 class="heading-top">Choose a section below</h2>
+        
+<!-- USERS SECTION/PAGE STARTS HERE -->        
+<div class="index-user"><button class="btn btn-user" onclick="document.getElementById('id01').style.display='block'" type="button">users</button></div>
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom">
+     <header class="w3-container w3-black"> 
+      <span onclick="document.getElementById('id01').style.display='none'" 
+      class="w3-button w3-black w3-xlarge w3-display-topright">&times;</span>
+      <h2>Users</h2>
+     </header>
+   
+     <div class="w3-bar w3-border-bottom">
+      <button class="tablink w3-bar-item w3-button " onclick="openCity(event, 'add-user')">Add a User</button>
+      <button class="tablink w3-bar-item w3-button" onclick="openCity(event, 'all-user')">View All</button>
+      <button class="tablink w3-bar-item w3-button" onclick="openCity(event, 'del-user')">Delete</button>
+      <button class="tablink w3-bar-item w3-button" onclick="openCity(event, 'update-user')">Update User Data</button>
+     </div>
+   <!-- *************REGISTER USER BEGINS************************** -->
+     <div id="add-user" class="w3-container city">
+      <section>
+        <h1>User Registration</h1>
+          <div class="w3-card-4 card-space">
+              
+            <form action=<%= pages_path = '/add' %> method="post" id="usersignup" class="w3-margin w3-padding-large">
+                <div class="w3-container general-userinfo">
+                        <p>
+                        <label for=" firstname">First Name</label>
+                        <input class="w3-input w3-border w3-round" name="firstname" type="text" id="firstname"></p>
+                        <p>
+                        <label for = "lastname" >Last Name</label>
+                        <input class="w3-input w3-border w3-round-large" name="lastname" type="text" id="lastname"></p>
+                        <p>
+                        <input class="w3-radio" type="radio" name="sex" value="male">
+                        <label>Male</label>
+                        </p>
+                        <p>
+                        <input class="w3-radio" type="radio" name="sex" value="female">
+                        <label>Female</label>
+                        </p>
+                      
+                          <h2> I can be described as, <b>a/an</b> </h2>
+                          
+                      <div class="user-category">
+                        <div class="tablink-user w3-button" onclick="innerdata(event, 'actor-user')">
+                            <input class="w3-radio" type="radio" id="actor" name="role" value="actor">
+                            <label for="actor">Actor only</label>
+                        </div>
+
+                        <div class=" tablink-user w3-button" onclick="innerdata(event, 'mrp-user')">
+                            <input class="w3-radio" type="radio" id="mrperson" name="role" value="movie related person">
+                            <label  for="mrperson">Actor and movie production team</label>
+                        </div>
+
+                        <div class="tablink-user w3-button" onclick="innerdata(event, 'consumer-user')">
+                            <input class="w3-radio" type="radio" id="mconsumer" name="role" value="movie consumer">
+                            <label for="mconsumer">Movie Consumer</label>
+                        </div>
+                      </div> 
+                      <section id="consumer-user" class="consumer-user w3-container user-data ">
+                        <h2>Movie category I prefer to watch...</h2>
+                        <small>Select all that applies.</small>
+                         <div class="w3-padding" id="ugenre"> <!--   fix genre here                     -->                          
+                           
+                            <%  genres.rows.forEach(fgenre =>{ %> 
+                              <p>
+                                  <input class="w3-check" name="usermoviegenre" id="" value=<%=fgenre.id%> type="checkbox">
+                                  <label> <%=fgenre.genre%> </label>
+                              </p>
+                              <%});%>                                                                       
+                              
+                        </div>                                                   
+                        <button type="submit" id="btn" class="w3-btn w3-teal">Register User</button>  
+                    </section>
+
+
+                    <section id="actor-user" class="actor-user w3-container user-data">
+                        <h2>Movie(s) starred in...</h2>
+                      <div class="w3-padding">                              <!--   fix movie here                     -->                 
+                          
+                          <%  movies.rows.forEach(movie =>{ %> 
+                          <p>
+                              <input class="w3-check" name="movies" id="" value=<%=movie.id%> type="checkbox">
+                              <label><%=movie.title%></label>
+                          </p>
+                          <%});%> 
+                                             
+                      </div>
+                      <button type="submit" id="btn" class="w3-btn w3-teal">Register User</button>
+                    </section>
+
+
+                  <section id="mrp-user" class="mrp-user w3-container user-data ">
+                    <h2>Part of the production team in movie(s) ...</h2>
+
+                    <div class="w3-padding">                           
+                        <select class="w3-select w3-border" name="movies">
+                          <!--   fix movies here                     -->
+                            <option value="" disabled selected>Choose your option</option>
+                            <%  movies.rows.forEach(movie =>{ %>
+                            <option value=<%=movie.id%>><%=movie.title%></option>
+                            <%});%>                            
+                          </select>                   
+                    </div>
+
+                    <h2>Role(s) in production team ...</h2> <!--   fix roles here                     -->
+                    <div class="w3-row-padding w3-container">                     
+                        <%  roles.rows.forEach(frole =>{ %>
+                        <p>
+                            <input class="w3-check" name="roles" id="" value=<%=frole.id%> type="checkbox">
+                            <label> <%=frole.role%> </label>
+                          </p>
+                          <%});%>                                                      
+                        
+                      </div>
+                    <p><button type="submit" id="btn" class="w3-btn w3-teal">Register User</button></p>
+
+                  </section>                 
+                </div>                         
+              </form>
+          </div>
+      </section>
+     </div>
+     <!-- ************REGISTER USER ENDS *************************** -->
+   <!--**********ALL USERS BEGINS *******************  -->
+     <div id="all-user" class="w3-container city">
+      <h4>  <input type="button" id="btn" value="Refresh data" class="w3-button w3-round-large w3-green "></h4>
+      <table class="w3-table-all w3-card-4">
+        <thead>
+            <tr>
+                <th>ID</th>                  
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Sex</th>
+                <th>Users Grouping</th>
+                <th>Movie</th>
+                <th>Roles</th>
+              </tr>
+        </thead>
+        <tbody id="alluser_table">
+        <%  result.rows.forEach(row =>{ %>
+              <tr>
+                <td><%=row.id%></td>
+                <td><%=row.first_name%></td>
+                <td><%=row.last_name%></td>
+                <td><%=row.sex%></td>
+                <td><%=row.user_groupping%></td>
+                <td><%=row.title%></td>
+                <td><%=row.roles%></td>
+              
+              <!-- const {id, first_name, last_name, sex, user_groupping, roles} = row
+              console.log([id, first_name, last_name, sex, user_groupping, roles]); -->
+              
+          </tr> 
+          <%});%>           
+        </tbody>
+      </table>
+     </div>
+   <!-- **************ALL USER ENDS ************************* -->
+     <div id="del-user" class="w3-container city">
+      <h1>De-register a User</h1>
+     <div class="w3-card-4 card-space">
+      <form action=<%= pages_path = '/delete' %> method="post" id="delete">
+        <div class="w3-row-padding w3-cell card-space">
+          <div class="w3-third card-space">
+            <label for="firstname">First Name</label>
+            <input class="w3-input w3-border"id="firstname" name="firstname" type="text" placeholder="First Name">
+          </div>
+          <div class="w3-third card-space">
+            <label for="lastname">Last Name</label>
+            <input class="w3-input w3-border" id="lastname" name="lastname" type="text" placeholder="Last Name">
+          </div>
+          <div class="w3-third m-button ">
+              <input type="submit" value="Submit" class="w3-button w3-round-large w3-red ">
+              <input type="button" value="Cancel" class="w3-button w3-round-large w3-blue ">
+              
+          </div>
+        </div>
+      </form>
+          <div class="w3-container card-space">
+            
+          </div>
+     </div>
+     </div>
+     
+
+     <div id="update-user" class="w3-container city">
+        <h1>Update User Data</h1>
+        <div class="w3-card-4 card-space">
+              
+          <form action="<%= pages_path = '/update' %>" method="post" id="user-update" class="w3-margin w3-padding-large">
+              
+              <div class="w3-container general-userinfo">
+                <p>
+                  <label for=" id">User ID</label>
+                  <input class="w3-input w3-border w3-round" name="id" type="text" id="id"></p>
+                  <p>
+                <p>
+                <label for=" firstname">First Name</label>
+                <input class="w3-input w3-border w3-round" name="firstname" type="text" id="firstname"></p>
+                <p>
+                <label for = "lastname" >Last Name</label>
+                <input class="w3-input w3-border w3-round-large" name="lastname" type="text" id="lastname"></p>
+                <p>
+                <input class="w3-radio" type="radio" name="sex" value="male">
+                <label>Male</label>
+                </p>
+                <p>
+                <input class="w3-radio" type="radio" name="sex" value="female">
+                <label>Female</label>
+                </p>
+              
+                  <h2> I can be described as, <b>a/an</b> </h2>
+                  
+              <div class="update-category">
+                <div class="tablink-update w3-button" onclick="updatedata(event, 'act-user')">
+                    <input class="w3-radio" type="radio" id="actor" name="role" value="actor">
+                    <label for="actor">Actor only</label>
+                </div>
+
+                <div class=" tablink-update w3-button" onclick="updatedata(event, 'mrpx-user')">
+                    <input class="w3-radio" type="radio" id="mrperson" name="role" value="movie related person">
+                    <label  for="mrperson">Actor and movie production team</label>
+                </div>
+
+                <div class="tablink-update w3-button" onclick="updatedata(event, 'con-user')">
+                    <input class="w3-radio" type="radio" id="mconsumer" name="role" value="movie consumer">
+                    <label for="mconsumer">Movie Consumer</label>
+                </div>
+              </div> 
+              <section id="con-user" class="con-user w3-container update-data">
+                <h2>Movie category I prefer to watch...</h2>
+                <small>Select all that applies.</small>
+                 <div class="w3-padding" id="ugenre"> <!--   fix genre here                     -->                          
+                   
+                    <%  genres.rows.forEach(fgenre =>{ %> 
+                      <p>
+                          <input class="w3-check" name="usermoviegenre" id="" value=<%=fgenre.id%> type="checkbox">
+                          <label> <%=fgenre.genre%> </label>
+                      </p>
+                      <%});%>                                                                       
+                      
+                </div>                                                   
+                <button type="submit" id="btn" class="w3-btn w3-teal">Update User Info.</button>  
+            </section>
+
+
+            <section id="act-user" class="act-user w3-container update-data">
+                <h2>Movie(s) starred in...</h2>
+              <div class="w3-padding">                              <!--   fix movie here                     -->                 
+                  
+                  <%  movies.rows.forEach(movie =>{ %> 
+                  <p>
+                      <input class="w3-check" name="movies" id="" value=<%=movie.id%> type="checkbox">
+                      <label><%=movie.title%></label>
+                  </p>
+                  <%});%> 
+                                     
+              </div>
+              <button type="submit" id="btn" class="w3-btn w3-teal">Update Actor Info.</button>
+            </section>
+
+
+          <section id="mrpx-user" class="mrpx-user w3-container update-data ">
+            <h2>Part of the production team in movie(s) ...</h2>
+
+            <div class="w3-padding">                           
+                <select class="w3-select w3-border" name="movies">
+                  <!--   fix movies here                     -->
+                    <option value="" disabled selected>Choose your option</option>
+                    <%  movies.rows.forEach(movie =>{ %>
+                    <option value=<%=movie.id%>><%=movie.title%></option>
+                    <%});%>                            
+                  </select>                   
+            </div>
+
+            <h2>Role(s) in production team ...</h2> <!--   fix roles here                     -->
+            <div class="w3-row-padding w3-container">                     
+                <%  roles.rows.forEach(frole =>{ %>
+                <p>
+                    <input class="w3-check" name="roles" id="" value=<%=frole.id%> type="checkbox">
+                    <label> <%=frole.role%> </label>
+                  </p>
+                  <%});%>                                                      
+                
+              </div>
+            <p><button type="submit" id="btn" class="w3-btn w3-teal">Update User Info.</button></p>
+
+          </section>                 
+        </div> 
+            </form>
+        </div>
+       </div>
+   
+
+       <div class="space-div"></div>
+     <div class="w3-container w3-padding">
+      <button class="w3-button w3-right w3-white w3-border" 
+      onclick="document.getElementById('id01').style.display='none'">Exit</button>              
+     </div>
+     
+    </div>
+</div>
+<!-- USERS SECTION/PAGE ENDS HERE -->
+
+<!-- MOVIES SECTION/PAGE STARTS HERE -->
+<div class="index-user"><button class="btn btn-movie"onclick="document.getElementById('id02').style.display='block'"  type="button">movies</button>
+  <div id="id02" class="w3-modal">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom">
+       <header class="w3-container w3-black"> 
+        <span onclick="document.getElementById('id02').style.display='none'" 
+        class="w3-button w3-black w3-xlarge w3-display-topright">&times;</span>
+        <h2>Movies</h2>
+       </header>
+     
+       <div class="w3-bar .w3-bar2 w3-border-bottom">
+        <button type="button" class="tablink w3-bar-item w3-button fsp1" onclick="openCity(event, 'all-movies')">All Movies</button>
+        <button type="button" class="tablink w3-bar-item w3-button fsp2" onclick="openCity(event, 'add-movie')">Add a Movie</button>
+        <button type="button" class="tablink w3-bar-item w3-button fsp3" onclick="openCity(event, 'movie-update')">Update Movie</button>
+        <button type="button" class="tablink w3-bar-item w3-button fsp4" onclick="openCity(event, 'remove-movie')">Remove Movie</button>
+        <button type="button" class="tablink w3-bar-item w3-button fsp5" onclick="openCity(event, 'movie-prequel')">Show Sequel</button>
+       </div>
+     
+       <!-- ALL MOVIES SECTION START -->
+       <div id="all-movies" class="w3-container city">
+          <section>
+            <h4>  <input type="button" value="Refresh data" class="w3-button w3-round-large w3-green "></h4>
+            <table class="w3-table-all w3-card-4">
+              <thead>
+              <tr>
+                <th>ID</th>                  
+                <th>Title</th>
+                <th>Description</th>
+                <th>Released at:</th>
+                <th>Country of production: </th>
+                <th>Genre:</th>
+              </tr>
+              </thead>
+              <tbody>          
+             
+                
+                <%  films.rows.forEach(film =>{ %> 
+              <tr>
+                 <td><%=film.id%></td>
+                <td><%=film.title%></td>
+                <td><%=film.description%></td>
+                <td><%=film.released_at%></td>
+                <td><%=film.prod_country%></td>
+                <td><%=film.genre%></td>
+               
+              </tr>
+              <%});%> 
+              
+            </tbody>
+            </table>
+          </section>
+         </div>
+     <!-- ALL MOVIES END -->
+     <!-- add a movie start -->
+       <div id="add-movie" class="w3-container city">        
+          <section>
+            <h1>Add Movie</h1>
+              <div class="w3-card-4 card-space">                  
+                <form action=<%= pages_path = '/movies/add' %> method="post" id="add-film" class="w3-margin w3-padding-large">
+                    <div class="w3-container general-userinfo">
+                            <p>
+                            <label>Title</label>
+                            <input class="w3-input w3-border w3-round" name="title" type="text"></p>
+                            <p>
+                            <label>Short Description:</label>
+                            <input class="w3-input w3-border w3-round-large" name="description" type="text"  style="min-height: 150px"></p>
+                            <p>
+                              <label>Released at:</label>
+                              <input class="w3-input w3-border w3-round" name="released_at" type="date">
+                            </p>
+                              
+                            <p>
+                                <label>Prequel:</label>
+                                <input class="w3-input w3-border w3-round" name="prequel" type="text">
+                              
+                            </p> 
+
+                            <p>
+                                <label>Country of production:</label>
+                                <input class="w3-input w3-border w3-round" name="prod_country" type="text">
+                            </p>                       
+                            <p>
+                              <label>Movie Genres:</label>
+                            </p>  
+                            <div>   
+                              
+                                <%  genres.rows.forEach(genrec =>{ %>                  
+                                  <p>
+                                      <input class="w3-check" type="checkbox" name="genres" value=<%=genrec.id%>>
+                                      <label><%=genrec.genre%></label>
+                                  </p> 
+                                  <%});%>                                                
+                        </div>                                                   
+                            <p><button class="w3-btn w3-teal">Submit</button></p>  
+                                  
+                    </div>                         
+                  </form>
+              </div>
+          </section>
+         </div>
+       
+     <!-- add movie end -->
+     <!-- movie update starts -->
+       <div id="movie-update" class="w3-container city">               
+          <section>
+            <h1>Update Movie Info.</h1>
+              <div class="w3-card-4 card-space">                  
+                <form action=<%= pages_path = '/movies/update' %> method="post" id="update-film" class="w3-margin w3-padding-large">
+                    <div class="w3-container general-userinfo">
+                        <p>
+                         <label>ID</label>
+                          <input class="w3-input w3-border w3-round" name="id" type="text">
+                        </p>
+                          <p>
+                            <label>Title</label>                           
+                          </p>
+                          <select class="w3-input w3-select w3-border w3-round" name="mov_id">
+                            <option value="" disabled selected>Choose your option</option>
+                            <%  movies.rows.forEach(movie =>{ %> 
+                              <option value=<%=movie.id%>><%=movie.title%></option>                                  
+                            <%});%>                        
+                          </select>
+                            <p>
+                            <label>Short Description:</label>
+                            <input class="w3-input w3-border w3-round-large" name="description" type="text"  style="min-height: 150px"></p>
+                            <p>
+                              <label>Released at:</label>
+                              <input class="w3-input w3-border w3-round" name="released_at" type="date"></p>
+
+                              <p>
+                                <label>Prequel:</label>
+                                <input class="w3-input w3-border w3-round" name="prequel" type="text">
+                              </p>  
+                               
+                              <p>
+                                <label>Country of production:</label>
+                                <input class="w3-input w3-border w3-round" name="prod_country" type="text">
+                              </p>  
+                              <p>
+                                <label>Movie Genres:</label>
+                              </p>
+                            <div>                        
+                              <%  genres.rows.forEach(genrec =>{ %>                  
+                                <p>
+                                    <input class="w3-check" type="checkbox" name="genres" value=<%=genrec.id%>>
+                                    <label><%=genrec.genre%></label>
+                                </p> 
+                                <%});%>                                       
+                                  
+                            </div>                                                   
+                            <p><button type="submit" class="w3-btn w3-teal">Update Data</button></p>  
+                                  
+                    </div>                         
+                  </form>
+              </div>
+          </section>
+        
+       </div>
+       <!-- movie update ends -->
+<!-- movie delete starts -->
+       <div id="remove-movie" class="w3-container city">
+         <section>
+          <h1>Remove movie</h1>
+          <div class="w3-card-4 card-space">
+            <form action=<%= pages_path = '/movies/delete' %> method="post" id="" class="w3-margin w3-padding-large">
+              
+                      <p>
+                      <label>Title:</label>
+                    </p>
+                    <select class="w3-input w3-select w3-border w3-round" name="id">
+                      <option value="" disabled selected>Choose your option</option>
+                      <%  movies.rows.forEach(movie =>{ %> 
+                        <option value=<%=movie.id%>><%=movie.title%></option>                                  
+                      <%});%>                        
+                    </select>
+                      
+                                                                        
+                      <p><button class="w3-btn w3-teal">Delete</button></p>  
+                      <div>
+                        
+                      </div>
+            </form>
+          </div>
+         </section>
+       </div>
+
+     <!-- movie delete ends -->
+     <!-- Prequel starts here -->
+     <div id="movie-prequel" class="w3-container city">
+       <section>
+       <h1>Original movie:</h1>
+       <select class="w3-input w3-select w3-border w3-round" name="id">
+        <option value="" disabled selected>Choose your option</option>
+        <%  prequels.rows.forEach(prequel =>{ %> 
+          <option value=<%=prequel.prequel_id%>><%=prequel.prequel_title%></option>                                  
+        <%});%>                        
+      </select>
+
+         <div class="card-space">       
+        <table class="w3-table-all w3-card-4 ">          
+          <thead>               
+           <tr class="w3-padding-16">
+             <th colspan="4">Sequel movies:</th>
+           </tr>
+          </thead>      
+          <tbody>    
+            <tr>
+                <th>ID: </th>
+                <th>Title: </th>
+                <th>Description: </th>
+                <th>Released at:</th>
+                <th>Country of production: </th>
+                <th>Genre:</th>
+            </tr> 
+            
+            
+            <%  sequels.rows.forEach(sequel =>{ %>    
+              
+                <tr>
+                
+                <td><%=sequel.id%></td>
+                 
+                 
+                <td><%=sequel.title%> </td>
+                 
+                 
+                <td><%=sequel.description%> </td>
+                 
+                 
+                <td><%=sequel.released_at%></td>
+                 
+                
+                <td><%=sequel.prod_country%> </td>
+              
+                
+                <td><%=sequel.genre%></td>
+                 
+            </tr>
+           
+            <%});%>
+          
+          </tbody>
+        </table>
+       
+      </div>
+      
+       </section>
+     </div>
+     <!-- prequel ends here -->
+       <div class="w3-container w3-padding">
+        <button class="w3-button w3-right w3-white w3-border" 
+        onclick="document.getElementById('id02').style.display='none'">Exit</button>
+       </div>
+      </div>
+     </div></div>
+<!-- MOVIES SECTION/PAGE ENDS HERE -->
+
+
+<!-- RATING SECTION/PAGE STARTS HERE -->        
+
+<div class="index-user"><button class="btn btn-movie"onclick="document.getElementById('id03').style.display='block'"  type="button">Rate a movie</button>
+  <div id="id03" class="w3-modal">
+      <div class="w3-modal-content w3-card-4 w3-animate-zoom">
+       <header class="w3-container w3-black"> 
+        <span onclick="document.getElementById('id03').style.display='none'" 
+        class="w3-button w3-black w3-xlarge w3-display-topright">&times;</span>
+        <h2>Ratings</h2>
+       </header>
+     
+       <div class="w3-bar .w3-bar2 w3-border-bottom">
+        <button type="button" class="tablink w3-bar-item w3-button fsp1" onclick="openCity(event, 'all-rating')">All Ratings</button>
+        <button type="button" class="tablink w3-bar-item w3-button fsp2" onclick="openCity(event, 'rating-add')">Add Ratings</button>
+        
+        <button type="button" class="tablink w3-bar-item w3-button fsp4" onclick="openCity(event, 'remove-rating')">Delete Rating</button>
+        <button type="button" class="tablink w3-bar-item w3-button fsp3" onclick="openCity(event, 'update-rating')">Update Ratings</button>
+       </div>
+     
+       <!-- ALL Rating SECTION START -->
+       <div id="all-rating" class="w3-container city">
+          <section>
+            <!-- <h4>  <input type="button" value="Refresh data" class="w3-button w3-round-large w3-green "></h4> -->
+            <div class="w3-card-4 card-space">                  
+              <!-- <form action="" method="" id="" class="w3-margin w3-padding-large"> -->
+                <div class="w3-container general-userinfo">
+
+
+                                  <h4 action="" method="" id="rating-film">  <input type="button" value="Refresh data" class="w3-button w3-round-large w3-green "></h4>
+                                  <table class="w3-table-all w3-card-4">
+                                      <thead>                           
+                                       <tr>                 
+                                         <th>First Name:</th>
+                                         <th>Last Name:</th>
+                                        <th>Movie Title:</th>
+                                        <th>Rating: </th>
+                                       <th>Rating Title:</th>
+                                       </tr>
+                                       </thead>
+                                    <tbody>                              
+                                        <%  ratings.rows.forEach(rating =>{ %> 
+                                       <tr>                            
+                                         <td><%=rating.first_name%></td>
+                                        <td><%=rating.last_name%></td>
+                                         <td><%=rating.title%></td>
+                                        <td><%=rating.rating_num%></td>
+                                         <td><%=rating.rating_title%></td>
+                                        
+                                       
+                                       </tr>
+                                       <%});%>                               
+                                    </tbody>
+                                  </table>
+                </div>                                            
+            </div>    
+          </section>
+         </div>
+     <!-- ALL rating END -->
+
+
+     
+       <!-- add ratiing start -->
+    <div id="rating-add" class="w3-container city">  
+            
+      <section> 
+        <h1>Rate A Movie</h1> 
+        <div class="w3-card-4 card-space">                 
+          <form action=<%= pages_path = '/ratings/add' %> method="post"  id="" class="w3-margin w3-padding-large">
+              <div class="w3-container general-userinfo">
+                <p>
+                <label>ID:</label>
+               <input class="w3-input w3-border w3-round" name="id" type="text"></p>
+              
+                <p>
+                  <label>Firstname:</label>
+                  <input class="w3-input w3-border w3-round" name="first_name" type="text"></p>
+                  
+                    <p>
+                      <label>Lastname:</label>
+                      <input class="w3-input w3-border w3-round" name="last_name" type="text"></p>
+                      <p>
+                      <label>Movie Title:</label>
+                      </p>                           
+                          <select class="w3-input w3-select w3-border w3-round" name="mov_id">
+                            <option value="" disabled selected>Choose your option</option>
+                            <%  movies.rows.forEach(movie =>{ %> 
+                              <option value=<%=movie.id%>><%=movie.title%></option>                                  
+                            <%});%>  
+                            <!-- <option value="king richard">King Richard</option>
+                            <option value="la la land">L La Land</option>
+                            <option value="yes man">Yes Man</option> -->
+                          </select>
+                          <p>
+                          <label>Rating:</label>
+                          </p>
+                          <select class="w3-input w3-select w3-border w3-round" name="rating">
+                            <option value="" disabled selected>Choose your option</option>
+                            <%  rates.rows.forEach(rate =>{ %> 
+                              <option value=<%=rate.rating_num%>><%=rate.rating_title%></option>                                  
+                            <%});%>  
+                            <!-- <option value="king richard">King Richard</option>
+                            <option value="la la land">L La Land</option>
+                            <option value="yes man">Yes Man</option> -->
+                          </select>
+                          <!-- <p>
+                <label>Comments:</label>
+                <input class="w3-input w3-border w3-round-large" name="description" type="text"  style="min-height: 150px"></p>  -->
+                </div>                      
+                <p><button class="w3-btn w3-teal">Submit Rating</button></p> 
+     
+                                                   
+          </form>  
+        </div>             
+    </section> 
+    </div>
+       
+     <!-- add rating end end -->
+     
+     <!-- rating update starts -->
+       <div id="update-rating" class="w3-container city">    
+            <h1>Update Rating</h1>                  
+              <section>        
+                  <div class="w3-card-4 card-space">                  
+                    <form action=<%= pages_path = '/ratings/update' %> method="post" id="rating-update" class="w3-margin w3-padding-large">
+                        <div class="w3-container general-userinfo">
+                                <p>
+                                <label>ID:</label>
+                                <input class="w3-input w3-border w3-round" name="id" type="text"></p>
+                                
+                                  <p>
+                                    <label>Firstname:</label>
+                                    <input class="w3-input w3-border w3-round" name="first_name" type="text"></p>
+                                    
+                                      <p>
+                                        <label>Lastname:</label>
+                                        <input class="w3-input w3-border w3-round" name="last_name" type="text"></p>
+                                        <p>
+                                        <label>Movie Title:</label>
+                                        </p>                           
+                                            <select class="w3-input w3-select w3-border w3-round" name="mov_id">
+                                              <option value="" disabled selected>Choose your option</option>
+                                              <%  movies.rows.forEach(movie =>{ %> 
+                                                <option value=<%=movie.id%>><%=movie.title%></option>                                  
+                                              <%});%>  
+                                              <!-- <option value="king richard">King Richard</option>
+                                              <option value="la la land">L La Land</option>
+                                              <option value="yes man">Yes Man</option> -->
+                                            </select>
+                                            <p>
+                                            <label>Rating:</label>
+                                          </p>
+                                            <!-- <input class="w3-input w3-border w3-round" name="rating" type="text"> -->
+                                            <select class="w3-input w3-select w3-border w3-round" name="rating">
+                                              <option value="" disabled selected>Choose your option</option>
+                                              <%  rates.rows.forEach(rate =>{ %> 
+                                                <option value=<%=rate.rating_num%>><%=rate.rating_title%></option>                                  
+                                              <%});%>  
+                                              <!-- <option value="king richard">King Richard</option>
+                                              <option value="la la land">L La Land</option>
+                                              <option value="yes man">Yes Man</option> -->
+                                            </select>
+                                            <!-- <p> -->
+                                <!-- <label>Comments:</label>
+                                <input class="w3-input w3-border w3-round-large" name="description" type="text"  style="min-height: 150px"></p>   -->
+
+                                <p><button class="w3-btn w3-teal">Update Rating</button></p>
+                                </div>                         
+                       
+                                                  
+                      </form>  
+                    </div>             
+              </section> 
+       </div>
+       <!-- rating  update ends -->
+
+
+
+<!-- Rating delete starts -->
+       <div id="remove-rating" class="w3-container city">
+         <section>
+          <h1>Remove rating</h1>
+          <div class="w3-card-4 card-space">
+            <form action =<%= pages_path = '/ratings/delete' %> method="post" id="rating-del" class="w3-margin w3-padding-large">
+              <div class="w3-container general-userinfo">
+                <p>
+                <label>ID:</label>
+                <input class="w3-input w3-border w3-round" name="id" type="text"></p>
+                
+                  <p>
+                    <label>Firstname:</label>
+                    <input class="w3-input w3-border w3-round" name="first_name" type="text"></p>
+                    
+                      <p>
+                        <label>Lastname:</label>
+                        <input class="w3-input w3-border w3-round" name="last_name" type="text"></p>
+                        <p>
+                        <label>Movie Title:</label>
+                        </p>                           
+                            <select class="w3-input w3-select w3-border w3-round" name="mov_id" >
+                              <option value="" disabled selected>Choose your option</option>
+                              <%  movies.rows.forEach(movie =>{ %> 
+                                <option value=<%=movie.id%>><%=movie.title%></option>                                  
+                              <%});%>                      
+                            </select>
+               </div>                                                                
+                      <p><button class="w3-btn w3-teal">Delete</button></p>  
+                      <div>
+                        
+                      </div>
+                    </form>
+            </div>
+         </section>
+       </div>
+     <!-- rating delete ends -->
+       <div class="w3-container w3-padding">
+        <button class="w3-button w3-right w3-white w3-border" 
+        onclick="document.getElementById('id02').style.display='none'">Exit</button>
+       </div>
+      </div>
+     </div></div>
+<!-- rating SECTION/PAGE ENDS HERE -->
+     
+
+<!-- MOVIES RECOMMENDATION SECTION/PAGE STARTS HERE -->
+<div class="index-user"><button class="btn btn-movie" onclick="document.getElementById('id04').style.display='block'"
+  type="button">Movies Recommendation</button>
+<div id="id04" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-animate-zoom">
+    <header class="w3-container w3-black">
+      <span onclick="document.getElementById('id04').style.display='none'"
+        class="w3-button w3-black w3-xlarge w3-display-topright">&times;</span>
+      <h2>Movies Recommendation</h2>
+    </header>
+
+    <div class="w3-bar .w3-bar2 w3-border-bottom">
+      <button type="button" class="tablink w3-bar-item w3-button fsp1" onclick="openCity(event, 'recommendation')">Recommendation</button>
+      <!-- <button type="button" class="tablink w3-bar-item w3-button fsp2" onclick="openCity(event, 'add-movie')">Add a
+        Movie</button>
+      <button type="button" class="tablink w3-bar-item w3-button fsp3"
+        onclick="openCity(event, 'movie-update')">Update Movie</button>
+      <button type="button" class="tablink w3-bar-item w3-button fsp4"
+        onclick="openCity(event, 'remove-movie')">Remove Movie</button> -->
+    </div>
+
+    <!-- RECOMMENDATION SECTION START -->
+    
+    <div id="recommendation" class="w3-container city">
+
+            <section>
+              <h1>Get Recommendation</h1>
+              <div class="w3-card-4 card-space ">
+                <form action=<%= pages_path = '/recommendation/getrec' %> method="post" id="" class="w3-margin w3-padding-large">
+                   <div class="w3-container general-userinfo">
+                    <p>
+                      <label>USER ID:</label>
+                      <input class="w3-input w3-border w3-round" name="id" type="text">
+                    </p>
+                    <p><button class="w3-btn w3-teal">Submit</button></p>
+                  </div>
+                </form>
+            
+                
+                  
+                  
+              </div>
+            </section>
+    </div>
+    <div class="w3-container w3-padding">
+      <button class="w3-button w3-right w3-white w3-border"
+        onclick="document.getElementById('id04').style.display='none'">Exit</button>
+    </div>
+  </div>
+</div>
+</div>
+<!-- MOVIE RECOMMENDATION SECTION/PAGE ENDS HERE -->
+
+
+
+</div>
+
+     <!-- script goes here -->
+
+<!-- script ends -->
+
+<script src="./js/movdb.js"></script>
+
+
+ <!-- footer STARTS HERE -->        
+</body>
+</html>
+<!-- footer ENDS HERE -->      
